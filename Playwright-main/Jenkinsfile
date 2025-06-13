@@ -23,12 +23,17 @@ pipeline {
       }
     }
     post {
-                always {
-                    allure includeProperties:
-                     false,
-                     jdk: '',
-                     results: [[path: 'build/allure-results']]
+                steps {
+                script {
+                    allure([
+                        includeProperties: false,
+                        jdk: '',
+                        properties: [],
+                        reportBuildPolicy: 'ALWAYS',
+                        results: [[path: '$WORKSPACE/target/allure-results']]
+                    ])
                 }
+            }
     }
   }
 }
