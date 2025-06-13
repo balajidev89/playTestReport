@@ -1,5 +1,6 @@
 // @ts-check
 const { devices } = require('@playwright/test');
+import {AllureReporter} from "allure-playwright"
 
 const config = {
     workers: process.env.CI ? 4 : 1,
@@ -9,7 +10,8 @@ const config = {
         timeout: 5000,
     },
     retries: 1,
-    reporter: 'html',
+    reporter: "allure-playwright",
+    resultsDir: "allure-results",
     projects: [
         {
             name: 'Chrome',
