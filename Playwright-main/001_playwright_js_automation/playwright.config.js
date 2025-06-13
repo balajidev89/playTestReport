@@ -2,6 +2,7 @@
 const { devices } = require('@playwright/test');
 
 const config = {
+    workers: process.env.CI ? 4 : 1,
     testDir: './tests',
     timeout: 30 * 1000,
     expect: {
@@ -34,7 +35,7 @@ const config = {
             },
         },
         {
-            name: 'Safair',
+            name: 'Safari',
             use: {
                 browserName: 'webkit',
                 headless: false,
